@@ -5,6 +5,7 @@
  */
 package cronometro.logica;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -12,89 +13,104 @@ import java.util.Iterator;
  * @author Estudiantes
  */
 public class Cronometro {
-    private UniidadTiempo deci;
-    private UniidadTiempo seg;
-    private UniidadTiempo min;
-    private UniidadTiempo horas;
-     
-   private  ArrayLIst<Memoria> memorias;
-    
-    public Cronometro (){
-        deci = new UniidadTiempo(10);
-        seg = new UniidadTiempo(60);
-        min = new UniidadTiempo(60);
-        horas = new UniidadTiempo(24);
-        memorias = new Memoria(10);
+
+    private UnidadTiempo decimas;
+    private UnidadTiempo segundos;
+    public UnidadTiempo minutos;
+    private UnidadTiempo horas;
+
+    private ArrayList<Memoria> memorias;
+
+    public Cronometro() {
+        decimas = new UnidadTiempo(10);
+        segundos = new UnidadTiempo(60);
+        minutos = new UnidadTiempo(60);
+        horas = new UnidadTiempo(24);
+        memorias = new ArrayList<Memoria>();
     }
 
-   
-    public UniidadTiempo getDeci() {
-        return deci;
+    public UnidadTiempo getDecimas() {
+        return decimas;
     }
 
-    public void setDeci(UniidadTiempo deci) {
-        this.deci = deci;
+    public void setDecimas(UnidadTiempo decimas) {
+        this.decimas = decimas;
     }
 
-    public UniidadTiempo getSeg() {
-        return seg;
+    public UnidadTiempo getSegundos() {
+        return segundos;
     }
 
-    public void setSeg(UniidadTiempo seg) {
-        this.seg = seg;
+    public void setSegundos(UnidadTiempo segundos) {
+        this.segundos = segundos;
     }
 
-    public UniidadTiempo getMin() {
-        return min;
+    public UnidadTiempo getMinutos() {
+        return minutos;
     }
 
-    public void setMin(UniidadTiempo min) {
-        this.min = min;
+    public void setMinutos(UnidadTiempo minutos) {
+        this.minutos = minutos;
     }
 
-    public UniidadTiempo getHoras() {
+    public UnidadTiempo getHoras() {
         return horas;
     }
 
-    public void setHoras(UniidadTiempo horas) {
+    public void setHoras(UnidadTiempo horas) {
         this.horas = horas;
     }
-        
-    public void avanzar(){
-        deci.avanzar();
-        if(deci.getValor()==0){
-            seg.avanzar();
-            if(seg.getValor()==0){
-                min.avanzar();;
-                if(min.getValor()==0)
+
+    public void avanzar() {
+        decimas.avanzar();
+        if (decimas.getValor() == 0) {
+            segundos.avanzar();
+            if (segundos.getValor() == 0) {
+                minutos.avanzar();
+                if (minutos.getValor() == 0) {
                     horas.avanzar();
+                }
             }
         }
     }
     
-    public String obtenerTiempo(){
-        return horas.obtenerValorFormateado()+":"+
-                min.obtenerValorFormateado()+":"+
-                 seg.obtenerValorFormateado()+":"+
-                  deci.obtenerValorFormateado();
-       
-    }
-    
-    public void guardarMemoria (){
-        Memoria m= new Memoria();
-        m.setDeci(deci);
-        m.setSeg(seg);
-        m.setMin(min);
-        m.setHoras(horas);
-        
-        memorias.add(m);
-    }
-    
-    public void mostrarMemorias(){
-        for (Iterator <Memoria> iterator = memorias.iterator(); iterator.hasNext();) {
-            Memoria next = iterator.next();
-            System.out.println(next.obtenerTiempo());
-            
+    public void retroceder() {
+        decimas.retroceder();
+        if (decimas.getValor() == decimas.getTope()-1) {
+            segundos.retroceder();
+            if (segundos.getValor() == segundos.getTope()-1) {
+                minutos.retroceder();
+                if (minutos.getValor() == minutos.getTope()-1) {
+                    horas.retroceder();
+                }
+            }
         }
     }
+
+    public String obtenerTiempo() {
+        return horas.obtenerValorFormateado() + " : "
+                + minutos.obtenerValorFormateado() + " : "
+                + segundos.obtenerValorFormateado() + " : "
+        
+                + decimas.obtenerValorFormateado();
+    }
+
+    public void guardarMemoria() {
+        Memoria m = new Memoria();
+        
+        m.setValorDecimas(decimas.getValor());
+        m.setValorSegundos(segundos.getValor());
+        m.setValorMinutos(minutos.getValor());
+        m.setValorHoras(horas.getValor());
+        
+        memorias.add(m);
+        
+    }
+
+    public void mostrarMemorias() {
+        for (Memoria memoria : memorias) {
+            System.out.println("memoria : " + memoria.obtenerTiempo());
+        }
+    }
+
 }

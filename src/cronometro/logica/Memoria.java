@@ -10,55 +10,40 @@ package cronometro.logica;
  * @author Estudiantes
  */
 public class Memoria {
-    private UniidadTiempo deci;
-    private UniidadTiempo seg;
-    private UniidadTiempo min;
-    private UniidadTiempo horas;
-            
-   public Memoria(){
-        deci = new UniidadTiempo(10);
-        seg = new UniidadTiempo(60);
-        min = new UniidadTiempo(60);
-        horas = new UniidadTiempo(24);
-   }
+    private UnidadTiempo decimas;
+    private UnidadTiempo segundos;
+    private UnidadTiempo minutos;
+    private UnidadTiempo horas;
 
-    public UniidadTiempo getDeci() {
-        return deci;
+    public Memoria() {
+        decimas = new UnidadTiempo(10);
+        segundos = new UnidadTiempo(60);
+        minutos = new UnidadTiempo(60);
+        horas = new UnidadTiempo(24);
+    }  
+    
+    public void setValorDecimas(int valor){
+        decimas.setValor(valor);
     }
-
-    public void setDeci(UniidadTiempo deci) {
-        this.deci = deci;
+    
+    public void setValorSegundos(int valor){
+        segundos.setValor(valor);
     }
-
-    public UniidadTiempo getSeg() {
-        return seg;
+    
+    public void setValorMinutos(int valor){
+        minutos.setValor(valor);
     }
-
-    public void setSeg(UniidadTiempo seg) {
-        this.seg = seg;
+    
+    public void setValorHoras(int valor){
+        horas.setValor(valor);
     }
-
-    public UniidadTiempo getMin() {
-        return min;
-    }
-
-    public void setMin(UniidadTiempo min) {
-        this.min = min;
-    }
-
-    public UniidadTiempo getHoras() {
-        return horas;
-    }
-
-    public void setHoras(UniidadTiempo horas) {
-        this.horas = horas;
-    }
-   
+    
     public String obtenerTiempo(){
-        return horas.obtenerValorFormateado()+":"+
-                min.obtenerValorFormateado()+":"+
-                 seg.obtenerValorFormateado()+":"+
-                  deci.obtenerValorFormateado();
-       
+        return horas.obtenerValorFormateado()+ " : " +
+                minutos.obtenerValorFormateado()+ " : " +
+                segundos.obtenerValorFormateado()+ " : " +
+                decimas.obtenerValorFormateado();
     }
+    
+        
 }

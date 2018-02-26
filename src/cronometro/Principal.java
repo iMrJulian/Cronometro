@@ -4,26 +4,41 @@
  * and open the template in the editor.
  */
 package cronometro;
+
 import cronometro.logica.Cronometro;
-import cronometro.logica.UniidadTiempo;
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  *
  * @author Estudiantes
  */
 public class Principal {
 
+    static boolean  frozen = false;
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        Cronometro c= new Cronometro();
-        for (int i = 0; i < 1000; i++) {
-            c.avanzar();
-            System.out.println(c.obtenerTiempo());
-            if (i%100==0)
-        }
-                
+        Cronometro c = new Cronometro();
+        Timer timer = new Timer();
+
+        TimerTask task;
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                if (frozen == false) {
+                    c.avanzar();
+                    System.out.println(c.obtenerTiempo());
+                    if (c.minutos.getValor() == 2) {
+                        frozen = true;
+                        timer.cancel();
+                    }
+                }
+            }
+        };
+        timer.schedule(task, 0, 1);
     }
-    
+
 }
