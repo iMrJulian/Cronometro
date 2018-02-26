@@ -38,7 +38,7 @@ public class Principal {
                 }
             }
         };
-        timer.schedule(task, 0, 1);
+        timer.schedule(task, 0, 100);
     }
 
 }
