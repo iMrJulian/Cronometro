@@ -14,12 +14,12 @@ import java.util.Iterator;
  */
 public class Cronometro {
 
-    private UnidadTiempo decimas;
-    private UnidadTiempo segundos;
+    public UnidadTiempo decimas;
+    public UnidadTiempo segundos;
     public UnidadTiempo minutos;
-    private UnidadTiempo horas;
+    public UnidadTiempo horas;
 
-    private ArrayList<Memoria> memorias;
+    public ArrayList<Memoria> memorias;
 
     public Cronometro() {
         decimas = new UnidadTiempo(10);
@@ -107,10 +107,10 @@ public class Cronometro {
         
     }
 
-    public void mostrarMemorias() {
+    public String mostrarMemorias() {
         for (Memoria memoria : memorias) {
-            System.out.println("memoria : " + memoria.obtenerTiempo());
+             memoria.obtenerTiempo();
         }
+        return memoria.obtenerTiempo();
     }
-
 }

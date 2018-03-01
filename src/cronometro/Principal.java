@@ -31,7 +31,7 @@ public class Principal {
                 if (frozen == false) {
                     c.avanzar();
                     System.out.println(c.obtenerTiempo());
-                    if (c.minutos.getValor() == 2) {
+                    if (c.segundos.getValor() ==10) {
                         frozen = true;
                         timer.cancel();
                     }
