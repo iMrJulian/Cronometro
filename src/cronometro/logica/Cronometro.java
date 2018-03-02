@@ -91,7 +91,6 @@ public class Cronometro {
         return horas.obtenerValorFormateado() + " : "
                 + minutos.obtenerValorFormateado() + " : "
                 + segundos.obtenerValorFormateado() + " : "
-        
                 + decimas.obtenerValorFormateado();
     }
 
@@ -108,9 +107,10 @@ public class Cronometro {
     }
 
     public String mostrarMemorias() {
+        String mem = "\n";
         for (Memoria memoria : memorias) {
-             memoria.obtenerTiempo();
+             mem = mem + "\n" + memoria.obtenerTiempo()+"\n";
         }
-        return memoria.obtenerTiempo();
+        return mem;
     }
 }
