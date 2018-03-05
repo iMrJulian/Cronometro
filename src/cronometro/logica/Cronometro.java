@@ -20,7 +20,7 @@ public class Cronometro {
     public UnidadTiempo horas;
 
     public ArrayList<Memoria> memorias;
-
+    
     public Cronometro() {
         decimas = new UnidadTiempo(10);
         segundos = new UnidadTiempo(60);
@@ -105,11 +105,15 @@ public class Cronometro {
         memorias.add(m);
         
     }
-
+    public void borrarMemorias() {
+     
+        memorias.clear();
+    }
+    
     public String mostrarMemorias() {
         String mem = "\n";
         for (Memoria memoria : memorias) {
-             mem = mem + "\n" + memoria.obtenerTiempo()+"\n";
+             mem = mem + "\n" + memoria.obtenerTiempo()+ "\n";
         }
         return mem;
     }
