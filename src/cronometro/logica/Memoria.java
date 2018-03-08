@@ -15,6 +15,7 @@ public class Memoria {
     private UnidadTiempo minutos;
     private UnidadTiempo horas;
 
+
     public Memoria() {
         decimas = new UnidadTiempo(10);
         segundos = new UnidadTiempo(60);
@@ -45,5 +46,4 @@ public class Memoria {
                 decimas.obtenerValorFormateado();
     }
     
-        
 }

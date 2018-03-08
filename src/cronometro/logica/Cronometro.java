@@ -106,15 +106,21 @@ public class Cronometro {
         
     }
     public void borrarMemorias() {
-     
         memorias.clear();
     }
     
     public String mostrarMemorias() {
-        String mem = "\n";
+        String mem = "";
         for (Memoria memoria : memorias) {
              mem = mem + "\n" + memoria.obtenerTiempo()+ "\n";
         }
         return mem;
+    }
+    
+    public void reiniciar (){
+        decimas.setValor(0);
+        segundos.setValor(0);
+        minutos.setValor(0);
+        horas.setValor(0);
     }
 }

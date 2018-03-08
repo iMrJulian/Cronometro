@@ -8,6 +8,7 @@ package cronometro.gui;
 import cronometro.logica.*;
 import java.util.Timer;
 import java.util.TimerTask;
+
 /**
  *
  * @author Estudiantes
@@ -18,6 +19,7 @@ public class JFrameCronometro extends javax.swing.JFrame {
     Cronometro crono;
     boolean frozen;
     int verificador;
+    
 
     /**
      * Creates new form JFrameCronometro
@@ -27,7 +29,7 @@ public class JFrameCronometro extends javax.swing.JFrame {
         timer = new Timer();
         crono = new Cronometro();
         frozen = true;
-
+        jtMemorias.setEnabled(false);
         timer.schedule(new Tarea(), 0, 100);
     }
 
@@ -45,10 +47,9 @@ public class JFrameCronometro extends javax.swing.JFrame {
         btnParar = new javax.swing.JButton();
         btnReiniciar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
-        jlbMemorias = new javax.swing.JLabel();
         btnRetroceder = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jtMemorias = new javax.swing.JTextArea();
         btnBorrarHistorial = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,8 +91,6 @@ public class JFrameCronometro extends javax.swing.JFrame {
             }
         });
 
-        jlbMemorias.setLabelFor(btnGuardar);
-
         btnRetroceder.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnRetroceder.setText("Retroceder");
         btnRetroceder.addActionListener(new java.awt.event.ActionListener() {
@@ -100,10 +99,12 @@ public class JFrameCronometro extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setOpaque(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtMemorias.setColumns(20);
+        jtMemorias.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
+        jtMemorias.setRows(5);
+        jtMemorias.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jtMemorias.setOpaque(false);
+        jScrollPane1.setViewportView(jtMemorias);
 
         btnBorrarHistorial.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBorrarHistorial.setText("Borrar Historial");
@@ -124,26 +125,21 @@ public class JFrameCronometro extends javax.swing.JFrame {
                         .addComponent(jlbDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnReiniciar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnIniciar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnParar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(185, 185, 185)
-                                .addComponent(jlbMemorias, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(btnRetroceder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnParar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(170, 170, 170)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnRetroceder, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                            .addComponent(btnBorrarHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnReiniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBorrarHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(316, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,18 +151,16 @@ public class JFrameCronometro extends javax.swing.JFrame {
                     .addComponent(btnParar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnReiniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRetroceder, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnBorrarHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbMemorias, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnReiniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 280, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(19, 19, 19)
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
@@ -184,29 +178,25 @@ public class JFrameCronometro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPararActionPerformed
 
     private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
-        crono.decimas.setValor(0);
-        crono.segundos.setValor(0);
-        crono.minutos.setValor(0);
-        crono.horas.setValor(0);
+        crono.reiniciar();
+        crono.borrarMemorias();
         frozen = true;
         jlbDisplay.setText(crono.obtenerTiempo());
     }//GEN-LAST:event_btnReiniciarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         crono.guardarMemoria();
-        jlbMemorias.setText( crono.mostrarMemorias());
-        jTextArea1.setText(crono.mostrarMemorias());
+        jtMemorias.setText(crono.mostrarMemorias());
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnRetrocederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetrocederActionPerformed
         verificador=1;
         frozen = false;
-
     }//GEN-LAST:event_btnRetrocederActionPerformed
 
     private void btnBorrarHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarHistorialActionPerformed
         crono.borrarMemorias();
-        jlbMemorias.setText( crono.mostrarMemorias());
+        jtMemorias.setText( crono.mostrarMemorias());
     }//GEN-LAST:event_btnBorrarHistorialActionPerformed
 
     /**
@@ -252,9 +242,8 @@ public class JFrameCronometro extends javax.swing.JFrame {
     private javax.swing.JButton btnReiniciar;
     private javax.swing.JButton btnRetroceder;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel jlbDisplay;
-    private javax.swing.JLabel jlbMemorias;
+    private javax.swing.JTextArea jtMemorias;
     // End of variables declaration//GEN-END:variables
 
     class Tarea extends TimerTask {
