@@ -181,6 +181,7 @@ public class JFrameCronometro extends javax.swing.JFrame {
         crono.reiniciar();
         crono.borrarMemorias();
         frozen = true;
+        jtMemorias.setText(crono.mostrarMemorias());
         jlbDisplay.setText(crono.obtenerTiempo());
     }//GEN-LAST:event_btnReiniciarActionPerformed
 
